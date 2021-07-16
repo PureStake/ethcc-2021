@@ -9,8 +9,11 @@ const privateKeyDev =
 const privateKeyMoonbase =
    'YOUR_PRIVATE_KEY_HERE_ONLY_FOR_DEMOSTRATION_PURPOSES';
 
-   const webSocketProvider = new Web3.providers.WebsocketProvider("ws://localhost:34102/");
-
+   // const webSocketProvider = new Web3.providers.WebsocketProvider("ws://localhost:34102/");
+   require("ts-node").register({
+    files: true,
+  });
+  
 module.exports = {
    networks: {
       // Moonbeam Development Network
@@ -27,6 +30,8 @@ module.exports = {
                'http://localhost:9933/'
             );
          },
+        //  gas: 10000000,   // <--- Twice as much
+        //  gasPrice: 10000000000,
          network_id: 1281,
       },
       // Moonbase Alpha TestNet

@@ -1,8 +1,8 @@
 {
-   "name": "moonbeam-truffle-box",
+   "name": "moonbeam-pooled-staking-demo",
    "version": "1.0.0",
    "dependencies": {
-      "@openzeppelin/contracts": "^3.2.2-solc-0.7",
+      "@openzeppelin/contracts": "^4.2.0",
       "@truffle/hdwallet-provider": "=1.2.2",
       "moonbeam-truffle-plugin": ">=1.4.0",
       "truffle": "^5.1.66",
