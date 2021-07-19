@@ -238,9 +238,7 @@
   "ast": {
     "absolutePath": "project:/contracts/StakingInterface.sol",
     "exportedSymbols": {
-      "ParachainStaking": [
-        1691
-      ]
+      "ParachainStaking": [1691]
     },
     "id": 1692,
     "license": "GPL-3.0-only",
@@ -248,12 +246,7 @@
     "nodes": [
       {
         "id": 1587,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "41:24:9"
       },
@@ -270,9 +263,7 @@
         },
         "fullyImplemented": false,
         "id": 1691,
-        "linearizedBaseContracts": [
-          1691
-        ],
+        "linearizedBaseContracts": [1691],
         "name": "ParachainStaking",
         "nameLocation": "283:16:9",
         "nodeType": "ContractDefinition",
@@ -1352,9 +1343,7 @@
   "legacyAST": {
     "absolutePath": "project:/contracts/StakingInterface.sol",
     "exportedSymbols": {
-      "ParachainStaking": [
-        1691
-      ]
+      "ParachainStaking": [1691]
     },
     "id": 1692,
     "license": "GPL-3.0-only",
@@ -1362,12 +1351,7 @@
     "nodes": [
       {
         "id": 1587,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "41:24:9"
       },
@@ -1384,9 +1368,7 @@
         },
         "fullyImplemented": false,
         "id": 1691,
-        "linearizedBaseContracts": [
-          1691
-        ],
+        "linearizedBaseContracts": [1691],
         "name": "ParachainStaking",
         "nameLocation": "283:16:9",
         "nodeType": "ContractDefinition",
