@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // This is a PoC to use the staking precompile wrapper as a Solidity developer.
 pragma solidity >=0.8.0;
-import "./StakingInterface.sol";
 
+import "./StakingInterface.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 
-contract NominationDao is AccessControl {
+contract NominationDAO is AccessControl {
     using SafeMath for uint256;
     
     event Log(uint _value,uint _value2);
@@ -33,7 +33,7 @@ contract NominationDao is AccessControl {
     constructor(address _target, address admin) {
         target = _target;
         // This is the well-known address of Moonbeam's parachain staking precompile
-        staking = ParachainStaking(0x0000000000000000000000000000000000000100);
+        staking = ParachainStaking(0x0000000000000000000000000000000000000800);
         // MinNominatorStk = staking.min_nomination();
         _setupRole(DEFAULT_ADMIN_ROLE, admin);
         _setupRole(MEMBER, admin);
@@ -97,7 +97,8 @@ contract NominationDao is AccessControl {
         if (address(this).balance > MinNominatorStk) {
             emit Log(address(this).balance,MinNominatorStk);
 
-            staking.nominate(target, address(this).balance);
+            staking.nominate(target, address(this).balance, 99, 99);
+            emit Log(0,2);
         } else {
             revert("NominationBelowMin");
         }
@@ -106,7 +107,7 @@ contract NominationDao is AccessControl {
     /// Calls directly into the interface.
     /// Assumes the contract has atleast 10 ether so that the nomination will be successful.
     function unsafe_attempt_to_nominate() public onlyRole(DEFAULT_ADMIN_ROLE)  {
-        staking.nominate(target, 10 ether);
+        staking.nominate(target, 10 ether, 99, 99);
     }
 
     // We need a public receive function to accept ether donations as direct transfers

@@ -1,6 +1,6 @@
 const { ApiPromise, WsProvider } = require("@polkadot/api");
 const { typesBundle } = require("moonbeam-types-bundle");
-const Web3 = require('web3');
+const Web3 = require("web3");
 
 // Example test script - Uses Mocha and Ganache
 // @ts-ignore
@@ -15,7 +15,9 @@ const CHARLETH_PRIV_KEY = "0x0b6e18cafb6ed99687ec547bd28139cafdd2bffe70e6b688025
 const DOROTHY = "0x773539d4Ac0e786233D90A233654ccEE26a613D9";
 const DOROTHY_PRIV_KEY = "0x39539ab1876910bbf3a223d84a29e28f1cb4e2e456503e7e91ed39b2e7223d68";
 
-const WS_PORT = "9944";
+// Change PORTS
+const WS_PORT = "9948";
+const HTTP_PORT = "9937";
 
 const MIN_NOMINATOR_STAKE = 5000000000000000000;
 
@@ -54,18 +56,10 @@ contract("NominationDAO", (accounts) => {
       true,
       "admin is wrong"
     );
-    assert.equal(
-      ADMIN===accounts[0],
-      true,
-      "admin is wrong"
-    );
+    assert.equal(ADMIN === accounts[0], true, "admin is wrong");
 
     const MEMBER = await nominationDAO.MEMBER.call();
-    assert.equal(
-      await nominationDAO.hasRole.call(MEMBER, ADMIN),
-      true,
-      "MEMBER is wrong"
-    );
+    assert.equal(await nominationDAO.hasRole.call(MEMBER, ADMIN), true, "MEMBER is wrong");
   });
 
   // Check no nomination and no update possible funds avaiable
@@ -95,20 +89,20 @@ contract("NominationDAO", (accounts) => {
     //   .nominate(ALITH, MIN_GLMR_NOMINATOR, 0, 0)
     //   .signAndSend(ethan);
     // await context.createBlock();
-    await nominationDAO.add_stake({ from: accounts[0], value: 2*MIN_NOMINATOR_STAKE });
-    console.log("stake added");
-    const web3=new Web3("http://localhost:9933/")
+    await nominationDAO.add_stake({ from: accounts[0], value: 3 * MIN_NOMINATOR_STAKE });
+    //console.log("stake added");
+    const web3 = new Web3(`http://localhost:${HTTP_PORT}/`);
     const adminStake = await nominationDAO.memberStakes.call(accounts[0]);
-    assert.equal(Number(adminStake), 2*MIN_NOMINATOR_STAKE, "adminStake is wrong");
-    // console.log(Object.keys(nominationDAO))
-    // console.log(Object.keys(nominationDAO.methods))
-    console.log(await web3.eth.getBalance(nominationDAO.address))
-    console.log((await api.query.parachainStaking.candidatePool()).toHuman())
+    //console.log("----HERE");
+    assert.equal(Number(adminStake), 3 * MIN_NOMINATOR_STAKE, "adminStake is wrong");
+    //console.log(await web3.eth.getBalance(nominationDAO.address));
+    //console.log((await api.query.parachainStaking.candidatePool()).toHuman());
+    //console.log(accounts[0]);
     await nominationDAO.update_nomination(COLLATOR, { from: accounts[0] });
 
-    const nominators = await api.query.parachainStaking.nominatorState(COLLATOR);
-    console.log("nominators", nominators);
-    expect(nominators.toHuman().nominations[0].owner === ALITH).to.equal(
+    const nominators = (await api.query.parachainStaking.collatorState2(COLLATOR)).toHuman();
+    //console.log("nominators", nominators.nominators);
+    expect(nominators.nominators.includes(nominationDAO.address)).to.equal(
       true,
       "nomination didnt go through"
     );
