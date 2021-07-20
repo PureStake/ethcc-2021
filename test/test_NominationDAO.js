@@ -1,6 +1,6 @@
 const { ApiPromise, WsProvider } = require("@polkadot/api");
 const { typesBundle } = require("moonbeam-types-bundle");
-const Web3 = require('web3');
+const Web3 = require("web3");
 
 // Example test script - Uses Mocha and Ganache
 // @ts-ignore
@@ -54,18 +54,10 @@ contract("NominationDAO", (accounts) => {
       true,
       "admin is wrong"
     );
-    assert.equal(
-      ADMIN===accounts[0],
-      true,
-      "admin is wrong"
-    );
+    assert.equal(ADMIN === accounts[0], true, "admin is wrong");
 
     const MEMBER = await nominationDAO.MEMBER.call();
-    assert.equal(
-      await nominationDAO.hasRole.call(MEMBER, ADMIN),
-      true,
-      "MEMBER is wrong"
-    );
+    assert.equal(await nominationDAO.hasRole.call(MEMBER, ADMIN), true, "MEMBER is wrong");
   });
 
   // Check no nomination and no update possible funds avaiable
@@ -95,15 +87,13 @@ contract("NominationDAO", (accounts) => {
     //   .nominate(ALITH, MIN_GLMR_NOMINATOR, 0, 0)
     //   .signAndSend(ethan);
     // await context.createBlock();
-    await nominationDAO.add_stake({ from: accounts[0], value: 2*MIN_NOMINATOR_STAKE });
+    await nominationDAO.add_stake({ from: accounts[0], value: 2 * MIN_NOMINATOR_STAKE });
     console.log("stake added");
-    const web3=new Web3("http://localhost:9933/")
+    const web3 = new Web3("http://localhost:9933/");
     const adminStake = await nominationDAO.memberStakes.call(accounts[0]);
-    assert.equal(Number(adminStake), 2*MIN_NOMINATOR_STAKE, "adminStake is wrong");
-    // console.log(Object.keys(nominationDAO))
-    // console.log(Object.keys(nominationDAO.methods))
-    console.log(await web3.eth.getBalance(nominationDAO.address))
-    console.log((await api.query.parachainStaking.candidatePool()).toHuman())
+    assert.equal(Number(adminStake), 2 * MIN_NOMINATOR_STAKE, "adminStake is wrong");
+    console.log(await web3.eth.getBalance(nominationDAO.address));
+    console.log((await api.query.parachainStaking.candidatePool()).toHuman());
     await nominationDAO.update_nomination(COLLATOR, { from: accounts[0] });
 
     const nominators = await api.query.parachainStaking.nominatorState(COLLATOR);
