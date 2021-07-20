@@ -33,7 +33,7 @@ contract NominationDAO is AccessControl {
     constructor(address _target, address admin) {
         target = _target;
         // This is the well-known address of Moonbeam's parachain staking precompile
-        staking = ParachainStaking(0x0000000000000000000000000000000000000100);
+        staking = ParachainStaking(0x0000000000000000000000000000000000000800);
         // MinNominatorStk = staking.min_nomination();
         _setupRole(DEFAULT_ADMIN_ROLE, admin);
         _setupRole(MEMBER, admin);
@@ -98,6 +98,7 @@ contract NominationDAO is AccessControl {
             emit Log(address(this).balance,MinNominatorStk);
 
             staking.nominate(target, address(this).balance, 99, 99);
+            emit Log(0,2);
         } else {
             revert("NominationBelowMin");
         }
