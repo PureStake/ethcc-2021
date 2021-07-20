@@ -9,8 +9,6 @@ import "@openzeppelin/contracts/utils/Address.sol";
 
 contract NominationDAO is AccessControl {
     using SafeMath for uint256;
-    
-    event Log(uint _value,uint _value2);
 
     // TODO Our interface should have an accessor for this.
     uint256 public constant MinNominatorStk = 5 ether;
@@ -68,10 +66,8 @@ contract NominationDAO is AccessControl {
 
     // Add stake (and increase pool share)
     function add_stake() external payable onlyRole(MEMBER) {
-            emit Log(2,2);
         memberStakes[msg.sender] = memberStakes[msg.sender].add(msg.value);
         totalStake = totalStake.add(msg.value);
-            emit Log(3,3);
     }
 
     // Function for a user to cash out
@@ -86,19 +82,15 @@ contract NominationDAO is AccessControl {
 
     /// Update the on-chain nomination to reflect any recently-contributed nominations.
     function update_nomination(address _target) public onlyRole(DEFAULT_ADMIN_ROLE)  {
-            emit Log(0,0);
         // If we are already nominating, we need to remove the old nomination first
         if (staking.is_nominator(address(this))) {
             staking.revoke_nomination(target);
         }
-            emit Log(0,1);
         target = _target;
         // If we have enough funds to nominate, we should start a nomination
         if (address(this).balance > MinNominatorStk) {
-            emit Log(address(this).balance,MinNominatorStk);
 
             staking.nominate(target, address(this).balance, 99, 99);
-            emit Log(0,2);
         } else {
             revert("NominationBelowMin");
         }

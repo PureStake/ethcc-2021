@@ -16,8 +16,8 @@ const DOROTHY = "0x773539d4Ac0e786233D90A233654ccEE26a613D9";
 const DOROTHY_PRIV_KEY = "0x39539ab1876910bbf3a223d84a29e28f1cb4e2e456503e7e91ed39b2e7223d68";
 
 // Change PORTS
-const WS_PORT = "9948";
-const HTTP_PORT = "9937";
+const WS_PORT = "9944";
+const HTTP_PORT = "9933";
 
 const MIN_NOMINATOR_STAKE = 5000000000000000000;
 
@@ -34,8 +34,6 @@ contract("NominationDAO", (accounts) => {
   beforeEach(async () => {
     // Deploy token contract
     nominationDAO = await NominationDAO.new(COLLATOR, ADMIN, { from: accounts[0] });
-    // console.log("nominationDAO",Object.keys(nominationDAO))
-    console.log("nominationDAO.address", nominationDAO.address);
     api = await ApiPromise.create({
       initWasm: false,
       provider: new WsProvider(`ws://localhost:${WS_PORT}`),
@@ -65,17 +63,14 @@ contract("NominationDAO", (accounts) => {
   // Check no nomination and no update possible funds avaiable
   it("Check no nomination and no update possible funds avaiable", async () => {
     const nominators = await api.query.parachainStaking.nominatorState(COLLATOR);
-    console.log("nominators", nominators.toHuman());
     expect(nominators.toHuman() === null).to.equal(true, "there should be no nominator");
     try {
       await nominationDAO.update_nomination(COLLATOR, { from: accounts[0] });
     } catch (e) {
-      // console.log("caught", e, "+" + e.message + "+");
       assert.equal(true, true, "tx didn't throw error");
     }
 
     const nominatorsAfter = await api.query.parachainStaking.nominatorState(COLLATOR);
-    console.log("nominatorsAfter", nominatorsAfter.toHuman());
     expect(nominatorsAfter.toHuman() === null).to.equal(
       true,
       "nomination shouldn't have gone through"
@@ -83,61 +78,18 @@ contract("NominationDAO", (accounts) => {
   });
 
   it("should have succesfully nominated COLLATOR", async function () {
-    // const keyring = new Keyring({ type: "ethereum" });
-    // const ethan = await keyring.addFromUri(ETHAN_PRIVKEY, null, "ethereum");
-    // await context.polkadotApi.tx.parachainStaking
-    //   .nominate(ALITH, MIN_GLMR_NOMINATOR, 0, 0)
-    //   .signAndSend(ethan);
-    // await context.createBlock();
     await nominationDAO.add_stake({ from: accounts[0], value: 3 * MIN_NOMINATOR_STAKE });
-    //console.log("stake added");
-    const web3 = new Web3(`http://localhost:${HTTP_PORT}/`);
+
     const adminStake = await nominationDAO.memberStakes.call(accounts[0]);
-    //console.log("----HERE");
     assert.equal(Number(adminStake), 3 * MIN_NOMINATOR_STAKE, "adminStake is wrong");
-    //console.log(await web3.eth.getBalance(nominationDAO.address));
-    //console.log((await api.query.parachainStaking.candidatePool()).toHuman());
-    //console.log(accounts[0]);
+
+    // call update_nomination to nominate the current target
     await nominationDAO.update_nomination(COLLATOR, { from: accounts[0] });
 
     const nominators = (await api.query.parachainStaking.collatorState2(COLLATOR)).toHuman();
-    //console.log("nominators", nominators.nominators);
     expect(nominators.nominators.includes(nominationDAO.address)).to.equal(
       true,
       "nomination didnt go through"
     );
   });
-
-  // Check the balance of the owner of the contract
-  // it("should return the balance of token owner", async () => {
-  //     const balance = await token.balanceOf.call(accounts[0]);
-  //     assert.equal(balance, _totalSupply, 'balance is wrong');
-  // });
-
-  // // Transfer token and check balances
-  // it("should transfer token", async () => {
-  //     const amount = "1000000000000000000";
-  //     // Transfer method
-  //     await token.transfer(accounts[1], amount, { from: accounts[0] });
-  //     balance1 = await token.balanceOf.call(accounts[1]);
-  //     assert.equal(balance1, amount, 'accounts[1] balance is wrong');
-  // });
-
-  // // Set an allowance to an account, transfer from that account, check balances
-  // it("should give accounts[1] authority to spend accounts[0]'s token", async () => {
-  //     const amountAllow = "10000000000000000000";
-  //     const amountTransfer = "1000000000000000000";
-
-  //     // Approve accounts[1] to spend from accounts[0]
-  //     await token.approve(accounts[1], amountAllow, { from: accounts[0] });
-  //     const allowance = await token.allowance.call(accounts[0], accounts[1]);
-  //     assert.equal(allowance, amountAllow, 'allowance is wrong');
-
-  //     // Transfer tokens and check new balances
-  //     await token.transferFrom(accounts[0], accounts[2], amountTransfer, { from: accounts[1] });
-  //     const balance1 = await token.balanceOf.call(accounts[1]);
-  //     assert.equal(balance1, 0, 'accounts[1] balance is wrong');
-  //     const balance2 = await token.balanceOf.call(accounts[2]);
-  //     assert.equal(balance2, amountTransfer, 'accounts[2] balance is wrong');
-  // })
 });

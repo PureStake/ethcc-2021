@@ -96,6 +96,11 @@
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "candidateCount",
+          "type": "uint256"
         }
       ],
       "name": "join_candidates",
@@ -104,7 +109,18 @@
       "type": "function"
     },
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "candidateCount",
+          "type": "uint256"
+        }
+      ],
       "name": "leave_candidates",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -161,6 +177,16 @@
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "collatorNominationCount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nominatorNominationCount",
+          "type": "uint256"
         }
       ],
       "name": "nominate",
@@ -169,7 +195,13 @@
       "type": "function"
     },
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "nominatorNominationCount",
+          "type": "uint256"
+        }
+      ],
       "name": "leave_nominators",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -225,7 +257,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.6+commit.11564f7e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"less\",\"type\":\"uint256\"}],\"name\":\"candidate_bond_less\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"more\",\"type\":\"uint256\"}],\"name\":\"candidate_bond_more\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"go_offline\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"go_online\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collator\",\"type\":\"address\"}],\"name\":\"is_candidate\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"nominator\",\"type\":\"address\"}],\"name\":\"is_nominator\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collator\",\"type\":\"address\"}],\"name\":\"is_selected_candidate\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"join_candidates\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"leave_candidates\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"leave_nominators\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"min_nomination\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"nominate\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"less\",\"type\":\"uint256\"}],\"name\":\"nominator_bond_less\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"more\",\"type\":\"uint256\"}],\"name\":\"nominator_bond_more\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"round\",\"type\":\"uint256\"}],\"name\":\"points\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collator\",\"type\":\"address\"}],\"name\":\"revoke_nomination\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"candidate_bond_less(uint256)\":{\"notice\":\"Bond less for collator candidates\"},\"candidate_bond_more(uint256)\":{\"notice\":\"Bond more for collator candidates\"},\"go_offline()\":{\"notice\":\"Temporarily leave the set of collator candidates without unbonding\"},\"go_online()\":{\"notice\":\"Rejoin the set of collator candidates if previously had called `go_offline`\"},\"is_candidate(address)\":{\"notice\":\"Check whether the specified addess is currently a collator candidate\"},\"is_nominator(address)\":{\"notice\":\"Check whether the specified address is currently a staking nominator\"},\"is_selected_candidate(address)\":{\"notice\":\"Check whether the specifies address is currently a part of the active set\"},\"join_candidates(uint256)\":{\"notice\":\"Join the set of collator candidates\"},\"leave_candidates()\":{\"notice\":\"Request to leave the set of candidates. If successful, the account is immediately removed from the candidate pool to prevent selection as a collator, but unbonding is executed with a delay of `BondDuration` rounds.\"},\"leave_nominators()\":{\"notice\":\"Leave the set of nominators and, by implication, revoke all ongoing nominations\"},\"min_nomination()\":{\"notice\":\"Get the minimum nomination amount\"},\"nominate(address,uint256)\":{\"notice\":\"If caller is not a nominator, then join the set of nominators If caller is a nominator, then makes nomination to change their nomination state\"},\"nominator_bond_less(address,uint256)\":{\"notice\":\"Bond less for nominators with respect to a specific nominator candidate\"},\"nominator_bond_more(address,uint256)\":{\"notice\":\"Bond more for nominators with respect to a specific collator candidate\"},\"points(uint256)\":{\"notice\":\"Total points awarded to all collators in a particular round.\"},\"revoke_nomination(address)\":{\"notice\":\"Revoke an existing nomination\"}},\"notice\":\"The interface through which solidity contracts will interact with Parachain Staking We follow this same interface including four-byte function selectors, in the precompile that wraps the pallet\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/purestake/data/ETHCC/ethcc-2021/contracts/StakingInterface.sol\":\"ParachainStaking\"},\"evmVersion\":\"berlin\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/purestake/data/ETHCC/ethcc-2021/contracts/StakingInterface.sol\":{\"keccak256\":\"0xe52b74849e7f5b4b9229168ceee50bd84e5c45947521b56cdcc7c0751136d264\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://131426f622fe806299af2299537c8c4161631e545f54469132ae0406478a1475\",\"dweb:/ipfs/QmQfkaFEdRwiN3Bz7EqBAqsqFEvQRuxif1swagaxZ1PRsL\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.6+commit.11564f7e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"less\",\"type\":\"uint256\"}],\"name\":\"candidate_bond_less\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"more\",\"type\":\"uint256\"}],\"name\":\"candidate_bond_more\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"go_offline\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"go_online\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collator\",\"type\":\"address\"}],\"name\":\"is_candidate\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"nominator\",\"type\":\"address\"}],\"name\":\"is_nominator\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collator\",\"type\":\"address\"}],\"name\":\"is_selected_candidate\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"candidateCount\",\"type\":\"uint256\"}],\"name\":\"join_candidates\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"candidateCount\",\"type\":\"uint256\"}],\"name\":\"leave_candidates\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"nominatorNominationCount\",\"type\":\"uint256\"}],\"name\":\"leave_nominators\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"min_nomination\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"collatorNominationCount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nominatorNominationCount\",\"type\":\"uint256\"}],\"name\":\"nominate\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"less\",\"type\":\"uint256\"}],\"name\":\"nominator_bond_less\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"more\",\"type\":\"uint256\"}],\"name\":\"nominator_bond_more\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"round\",\"type\":\"uint256\"}],\"name\":\"points\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collator\",\"type\":\"address\"}],\"name\":\"revoke_nomination\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"candidate_bond_less(uint256)\":{\"notice\":\"Bond less for collator candidates\"},\"candidate_bond_more(uint256)\":{\"notice\":\"Bond more for collator candidates\"},\"go_offline()\":{\"notice\":\"Temporarily leave the set of collator candidates without unbonding\"},\"go_online()\":{\"notice\":\"Rejoin the set of collator candidates if previously had called `go_offline`\"},\"is_candidate(address)\":{\"notice\":\"Check whether the specified addess is currently a collator candidate\"},\"is_nominator(address)\":{\"notice\":\"Check whether the specified address is currently a staking nominator\"},\"is_selected_candidate(address)\":{\"notice\":\"Check whether the specifies address is currently a part of the active set\"},\"join_candidates(uint256,uint256)\":{\"notice\":\"Join the set of collator candidates\"},\"leave_candidates(uint256,uint256)\":{\"notice\":\"Request to leave the set of candidates. If successful, the account is immediately removed from the candidate pool to prevent selection as a collator, but unbonding is executed with a delay of `BondDuration` rounds.\"},\"leave_nominators(uint256)\":{\"notice\":\"Leave the set of nominators and, by implication, revoke all ongoing nominations\"},\"min_nomination()\":{\"notice\":\"Get the minimum nomination amount\"},\"nominate(address,uint256,uint256,uint256)\":{\"notice\":\"If caller is not a nominator, then join the set of nominators If caller is a nominator, then makes nomination to change their nomination state\"},\"nominator_bond_less(address,uint256)\":{\"notice\":\"Bond less for nominators with respect to a specific nominator candidate\"},\"nominator_bond_more(address,uint256)\":{\"notice\":\"Bond more for nominators with respect to a specific collator candidate\"},\"points(uint256)\":{\"notice\":\"Total points awarded to all collators in a particular round.\"},\"revoke_nomination(address)\":{\"notice\":\"Revoke an existing nomination\"}},\"notice\":\"The interface through which solidity contracts will interact with Parachain Staking We follow this same interface including four-byte function selectors, in the precompile that wraps the pallet\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/StakingInterface.sol\":\"ParachainStaking\"},\"evmVersion\":\"berlin\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/StakingInterface.sol\":{\"keccak256\":\"0xe5e2b894dafe38a6ae1426e07534a3b72ff4f499db7ff6930cc40fc148802395\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://5c76d28688d1e79ea2b741190b41d38112d00bc8698f58ac9f24051b73d24a74\",\"dweb:/ipfs/QmfGGgvsRdmjooFWVq7UVPNrkcJnNXB5kuv4P4zR7DQoin\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -233,21 +265,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: GPL-3.0-only\npragma solidity >=0.8.0;\n\n/// The interface through which solidity contracts will interact with Parachain Staking\n/// We follow this same interface including four-byte function selectors, in the precompile that\n/// wraps the pallet\ninterface ParachainStaking {\n    // First some simple accessors\n\n    /// Check whether the specified address is currently a staking nominator\n    function is_nominator(address nominator) external view returns (bool);\n\n    /// Check whether the specified addess is currently a collator candidate\n    function is_candidate(address collator) external view returns (bool);\n\n    /// Check whether the specifies address is currently a part of the active set\n    function is_selected_candidate(address collator) external view returns (bool);\n\n    /// Total points awarded to all collators in a particular round.\n    function points(uint256 round) external view returns (uint256);\n\n\n    /// Get the minimum nomination amount\n    function min_nomination() external view returns (uint256);\n\n    // Now the dispatchables\n\n    /// Join the set of collator candidates\n    function join_candidates(uint256 amount) external;\n\n    /// Request to leave the set of candidates. If successful, the account is immediately\n    /// removed from the candidate pool to prevent selection as a collator, but unbonding is\n    /// executed with a delay of `BondDuration` rounds.\n    function leave_candidates() external;\n\n    /// Temporarily leave the set of collator candidates without unbonding\n    function go_offline() external;\n\n    /// Rejoin the set of collator candidates if previously had called `go_offline`\n    function go_online() external;\n\n    /// Bond more for collator candidates\n    function candidate_bond_more(uint256 more) external;\n\n    /// Bond less for collator candidates\n    function candidate_bond_less(uint256 less) external;\n\n    /// If caller is not a nominator, then join the set of nominators\n    /// If caller is a nominator, then makes nomination to change their nomination state\n    function nominate(address collator, uint256 amount) external;\n\n    /// Leave the set of nominators and, by implication, revoke all ongoing nominations\n    function leave_nominators() external;\n\n    /// Revoke an existing nomination\n    function revoke_nomination(address collator) external;\n\n    /// Bond more for nominators with respect to a specific collator candidate\n    function nominator_bond_more(address candidate, uint256 more) external;\n\n    /// Bond less for nominators with respect to a specific nominator candidate\n    function nominator_bond_less(address candidate, uint256 less) external;\n}\n\n// These are the selectors generated by remix following this advice\n// https://ethereum.stackexchange.com/a/73405/9963\n// Eventually we will probably want a better way of generating these and copying them to Rust\n// {\n// \t\"289b6ba7\": \"candidate_bond_less(uint256)\",\n// \t\"c57bd3a8\": \"candidate_bond_more(uint256)\",\n// \t\"767e0450\": \"go_offline()\",\n// \t\"d2f73ceb\": \"go_online()\",\n// \t\"8545c833\": \"is_candidate(address)\",\n// \t\"8f6d27c7\": \"is_selected_candidate(address)\",\n// \t\"8e5080e7\": \"is_nominator(address)\",\n// \t\"ad76ed5a\": \"join_candidates(uint256)\",\n// \t\"b7694219\": \"leave_candidates()\",\n// \t\"e8d68a37\": \"leave_nominators()\",\n// \t\"c9f593b2\": \"min_nomination()\",\n// \t\"82f2c8df\": \"nominate(address,uint256)\",\n// \t\"f6a52569\": \"nominator_bond_less(address,uint256)\",\n// \t\"971d44c8\": \"nominator_bond_more(address,uint256)\",\n// \t\"4b65c34b\": \"revoke_nomination(address)\"\n// \t\"9799b4e7\": \"points(uint256)\"\n// }",
-  "sourcePath": "/home/purestake/data/ETHCC/ethcc-2021/contracts/StakingInterface.sol",
+  "source": "// SPDX-License-Identifier: GPL-3.0-only\npragma solidity >=0.8.0;\n\n/// The interface through which solidity contracts will interact with Parachain Staking\n/// We follow this same interface including four-byte function selectors, in the precompile that\n/// wraps the pallet\ninterface ParachainStaking {\n    // First some simple accessors\n\n    /// Check whether the specified address is currently a staking nominator\n    function is_nominator(address nominator) external view returns (bool);\n\n    /// Check whether the specified addess is currently a collator candidate\n    function is_candidate(address collator) external view returns (bool);\n\n    /// Check whether the specifies address is currently a part of the active set\n    function is_selected_candidate(address collator)\n        external\n        view\n        returns (bool);\n\n    /// Total points awarded to all collators in a particular round.\n    function points(uint256 round) external view returns (uint256);\n\n    /// Get the minimum nomination amount\n    function min_nomination() external view returns (uint256);\n\n    // Now the dispatchables\n\n    /// Join the set of collator candidates\n    function join_candidates(uint256 amount, uint256 candidateCount) external;\n\n    /// Request to leave the set of candidates. If successful, the account is immediately\n    /// removed from the candidate pool to prevent selection as a collator, but unbonding is\n    /// executed with a delay of `BondDuration` rounds.\n    function leave_candidates(uint256 amount, uint256 candidateCount) external;\n\n    /// Temporarily leave the set of collator candidates without unbonding\n    function go_offline() external;\n\n    /// Rejoin the set of collator candidates if previously had called `go_offline`\n    function go_online() external;\n\n    /// Bond more for collator candidates\n    function candidate_bond_more(uint256 more) external;\n\n    /// Bond less for collator candidates\n    function candidate_bond_less(uint256 less) external;\n\n    /// If caller is not a nominator, then join the set of nominators\n    /// If caller is a nominator, then makes nomination to change their nomination state\n    function nominate(\n        address collator,\n        uint256 amount,\n        uint256 collatorNominationCount,\n        uint256 nominatorNominationCount\n    ) external;\n\n    /// Leave the set of nominators and, by implication, revoke all ongoing nominations\n    function leave_nominators(uint256 nominatorNominationCount) external;\n\n    /// Revoke an existing nomination\n    function revoke_nomination(address collator) external;\n\n    /// Bond more for nominators with respect to a specific collator candidate\n    function nominator_bond_more(address candidate, uint256 more) external;\n\n    /// Bond less for nominators with respect to a specific nominator candidate\n    function nominator_bond_less(address candidate, uint256 less) external;\n}\n\n// These are the selectors generated by remix following this advice\n// https://ethereum.stackexchange.com/a/73405/9963\n// Eventually we will probably want a better way of generating these and copying them to Rust\n// {\n// \t\"289b6ba7\": \"candidate_bond_less(uint256)\",\n// \t\"c57bd3a8\": \"candidate_bond_more(uint256)\",\n// \t\"767e0450\": \"go_offline()\",\n// \t\"d2f73ceb\": \"go_online()\",\n// \t\"8545c833\": \"is_candidate(address)\",\n// \t\"8f6d27c7\": \"is_selected_candidate(address)\",\n// \t\"8e5080e7\": \"is_nominator(address)\",\n// \t\"0a1bff60\": \"join_candidates(uint256,uint256)\",\n// \t\"72b02a31\": \"leave_candidates(uint256)\",\n// \t\"b71d2153\": \"leave_nominators(uint256)\",\n// \t\"c9f593b2\": \"min_nomination()\",\n// \t\"49df6eb3\": \"nominate(address,uint256,uint256,uint256)\",\n// \t\"f6a52569\": \"nominator_bond_less(address,uint256)\",\n// \t\"971d44c8\": \"nominator_bond_more(address,uint256)\",\n// \t\"4b65c34b\": \"revoke_nomination(address)\"\n// \t\"9799b4e7\": \"points(uint256)\"\n// }",
+  "sourcePath": "/Users/antoineestienne/GitHubRepo/ethcc-2021/contracts/StakingInterface.sol",
   "ast": {
-    "absolutePath": "/home/purestake/data/ETHCC/ethcc-2021/contracts/StakingInterface.sol",
+    "absolutePath": "project:/contracts/StakingInterface.sol",
     "exportedSymbols": {
       "ParachainStaking": [
-        435
+        1652
       ]
     },
-    "id": 436,
+    "id": 1653,
     "license": "GPL-3.0-only",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 331,
+        "id": 1536,
         "literals": [
           "solidity",
           ">=",
@@ -255,7 +287,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "41:24:2"
+        "src": "41:24:9"
       },
       {
         "abstract": false,
@@ -263,48 +295,48 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 332,
+          "id": 1537,
           "nodeType": "StructuredDocumentation",
-          "src": "67:206:2",
+          "src": "67:206:9",
           "text": "The interface through which solidity contracts will interact with Parachain Staking\n We follow this same interface including four-byte function selectors, in the precompile that\n wraps the pallet"
         },
         "fullyImplemented": false,
-        "id": 435,
+        "id": 1652,
         "linearizedBaseContracts": [
-          435
+          1652
         ],
         "name": "ParachainStaking",
-        "nameLocation": "283:16:2",
+        "nameLocation": "283:16:9",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 333,
+              "id": 1538,
               "nodeType": "StructuredDocumentation",
-              "src": "342:72:2",
+              "src": "342:72:9",
               "text": "Check whether the specified address is currently a staking nominator"
             },
             "functionSelector": "8e5080e7",
-            "id": 340,
+            "id": 1545,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "is_nominator",
-            "nameLocation": "428:12:2",
+            "nameLocation": "428:12:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 336,
+              "id": 1541,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 335,
+                  "id": 1540,
                   "mutability": "mutable",
                   "name": "nominator",
-                  "nameLocation": "449:9:2",
+                  "nameLocation": "449:9:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 340,
-                  "src": "441:17:2",
+                  "scope": 1545,
+                  "src": "441:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -312,10 +344,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 334,
+                    "id": 1539,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "441:7:2",
+                    "src": "441:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -325,21 +357,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "440:19:2"
+              "src": "440:19:9"
             },
             "returnParameters": {
-              "id": 339,
+              "id": 1544,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 338,
+                  "id": 1543,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 340,
-                  "src": "483:4:2",
+                  "scope": 1545,
+                  "src": "483:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -347,10 +379,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 337,
+                    "id": 1542,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "483:4:2",
+                    "src": "483:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -359,42 +391,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "482:6:2"
+              "src": "482:6:9"
             },
-            "scope": 435,
-            "src": "419:70:2",
+            "scope": 1652,
+            "src": "419:70:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 341,
+              "id": 1546,
               "nodeType": "StructuredDocumentation",
-              "src": "495:72:2",
+              "src": "495:72:9",
               "text": "Check whether the specified addess is currently a collator candidate"
             },
             "functionSelector": "8545c833",
-            "id": 348,
+            "id": 1553,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "is_candidate",
-            "nameLocation": "581:12:2",
+            "nameLocation": "581:12:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 344,
+              "id": 1549,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 343,
+                  "id": 1548,
                   "mutability": "mutable",
                   "name": "collator",
-                  "nameLocation": "602:8:2",
+                  "nameLocation": "602:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 348,
-                  "src": "594:16:2",
+                  "scope": 1553,
+                  "src": "594:16:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -402,10 +434,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 342,
+                    "id": 1547,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "594:7:2",
+                    "src": "594:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -415,21 +447,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "593:18:2"
+              "src": "593:18:9"
             },
             "returnParameters": {
-              "id": 347,
+              "id": 1552,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 346,
+                  "id": 1551,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 348,
-                  "src": "635:4:2",
+                  "scope": 1553,
+                  "src": "635:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -437,10 +469,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 345,
+                    "id": 1550,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "635:4:2",
+                    "src": "635:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -449,42 +481,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "634:6:2"
+              "src": "634:6:9"
             },
-            "scope": 435,
-            "src": "572:69:2",
+            "scope": 1652,
+            "src": "572:69:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 349,
+              "id": 1554,
               "nodeType": "StructuredDocumentation",
-              "src": "647:77:2",
+              "src": "647:77:9",
               "text": "Check whether the specifies address is currently a part of the active set"
             },
             "functionSelector": "8f6d27c7",
-            "id": 356,
+            "id": 1561,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "is_selected_candidate",
-            "nameLocation": "738:21:2",
+            "nameLocation": "738:21:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 352,
+              "id": 1557,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 351,
+                  "id": 1556,
                   "mutability": "mutable",
                   "name": "collator",
-                  "nameLocation": "768:8:2",
+                  "nameLocation": "768:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 356,
-                  "src": "760:16:2",
+                  "scope": 1561,
+                  "src": "760:16:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -492,10 +524,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 350,
+                    "id": 1555,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "760:7:2",
+                    "src": "760:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -505,21 +537,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "759:18:2"
+              "src": "759:18:9"
             },
             "returnParameters": {
-              "id": 355,
+              "id": 1560,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 354,
+                  "id": 1559,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 356,
-                  "src": "801:4:2",
+                  "scope": 1561,
+                  "src": "825:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -527,10 +559,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 353,
+                    "id": 1558,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "801:4:2",
+                    "src": "825:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -539,42 +571,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "800:6:2"
+              "src": "824:6:9"
             },
-            "scope": 435,
-            "src": "729:78:2",
+            "scope": 1652,
+            "src": "729:102:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 357,
+              "id": 1562,
               "nodeType": "StructuredDocumentation",
-              "src": "813:64:2",
+              "src": "837:64:9",
               "text": "Total points awarded to all collators in a particular round."
             },
             "functionSelector": "9799b4e7",
-            "id": 364,
+            "id": 1569,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "points",
-            "nameLocation": "891:6:2",
+            "nameLocation": "915:6:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 360,
+              "id": 1565,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 359,
+                  "id": 1564,
                   "mutability": "mutable",
                   "name": "round",
-                  "nameLocation": "906:5:2",
+                  "nameLocation": "930:5:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 364,
-                  "src": "898:13:2",
+                  "scope": 1569,
+                  "src": "922:13:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -582,10 +614,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 358,
+                    "id": 1563,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "898:7:2",
+                    "src": "922:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -594,21 +626,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "897:15:2"
+              "src": "921:15:9"
             },
             "returnParameters": {
-              "id": 363,
+              "id": 1568,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 362,
+                  "id": 1567,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 364,
-                  "src": "936:7:2",
+                  "scope": 1569,
+                  "src": "960:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -616,10 +648,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 361,
+                    "id": 1566,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "936:7:2",
+                    "src": "960:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -628,48 +660,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "935:9:2"
+              "src": "959:9:9"
             },
-            "scope": 435,
-            "src": "882:63:2",
+            "scope": 1652,
+            "src": "906:63:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 365,
+              "id": 1570,
               "nodeType": "StructuredDocumentation",
-              "src": "952:37:2",
+              "src": "975:37:9",
               "text": "Get the minimum nomination amount"
             },
             "functionSelector": "c9f593b2",
-            "id": 370,
+            "id": 1575,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "min_nomination",
-            "nameLocation": "1003:14:2",
+            "nameLocation": "1026:14:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 366,
+              "id": 1571,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1017:2:2"
+              "src": "1040:2:9"
             },
             "returnParameters": {
-              "id": 369,
+              "id": 1574,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 368,
+                  "id": 1573,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 370,
-                  "src": "1043:7:2",
+                  "scope": 1575,
+                  "src": "1066:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -677,10 +709,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 367,
+                    "id": 1572,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1043:7:2",
+                    "src": "1066:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -689,42 +721,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1042:9:2"
+              "src": "1065:9:9"
             },
-            "scope": 435,
-            "src": "994:58:2",
+            "scope": 1652,
+            "src": "1017:58:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 371,
+              "id": 1576,
               "nodeType": "StructuredDocumentation",
-              "src": "1088:39:2",
+              "src": "1111:39:9",
               "text": "Join the set of collator candidates"
             },
-            "functionSelector": "ad76ed5a",
-            "id": 376,
+            "functionSelector": "0a1bff60",
+            "id": 1583,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "join_candidates",
-            "nameLocation": "1141:15:2",
+            "nameLocation": "1164:15:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 374,
+              "id": 1581,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 373,
+                  "id": 1578,
                   "mutability": "mutable",
                   "name": "amount",
-                  "nameLocation": "1165:6:2",
+                  "nameLocation": "1188:6:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 376,
-                  "src": "1157:14:2",
+                  "scope": 1583,
+                  "src": "1180:14:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -732,10 +764,37 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 372,
+                    "id": 1577,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1157:7:2",
+                    "src": "1180:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1580,
+                  "mutability": "mutable",
+                  "name": "candidateCount",
+                  "nameLocation": "1204:14:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1583,
+                  "src": "1196:22:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1579,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1196:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -744,147 +803,202 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1156:16:2"
+              "src": "1179:40:9"
             },
             "returnParameters": {
-              "id": 375,
+              "id": 1582,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1181:0:2"
+              "src": "1228:0:9"
             },
-            "scope": 435,
-            "src": "1132:50:2",
+            "scope": 1652,
+            "src": "1155:74:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 377,
+              "id": 1584,
               "nodeType": "StructuredDocumentation",
-              "src": "1188:234:2",
+              "src": "1235:234:9",
               "text": "Request to leave the set of candidates. If successful, the account is immediately\n removed from the candidate pool to prevent selection as a collator, but unbonding is\n executed with a delay of `BondDuration` rounds."
             },
-            "functionSelector": "b7694219",
-            "id": 380,
+            "functionSelector": "b7923c56",
+            "id": 1591,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "leave_candidates",
-            "nameLocation": "1436:16:2",
+            "nameLocation": "1483:16:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 378,
+              "id": 1589,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1452:2:2"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1586,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "1508:6:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1591,
+                  "src": "1500:14:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1585,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1500:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1588,
+                  "mutability": "mutable",
+                  "name": "candidateCount",
+                  "nameLocation": "1524:14:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1591,
+                  "src": "1516:22:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1587,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1516:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1499:40:9"
             },
             "returnParameters": {
-              "id": 379,
+              "id": 1590,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1463:0:2"
+              "src": "1548:0:9"
             },
-            "scope": 435,
-            "src": "1427:37:2",
+            "scope": 1652,
+            "src": "1474:75:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 381,
+              "id": 1592,
               "nodeType": "StructuredDocumentation",
-              "src": "1470:70:2",
+              "src": "1555:70:9",
               "text": "Temporarily leave the set of collator candidates without unbonding"
             },
             "functionSelector": "767e0450",
-            "id": 384,
+            "id": 1595,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "go_offline",
-            "nameLocation": "1554:10:2",
+            "nameLocation": "1639:10:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 382,
+              "id": 1593,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1564:2:2"
+              "src": "1649:2:9"
             },
             "returnParameters": {
-              "id": 383,
+              "id": 1594,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1575:0:2"
+              "src": "1660:0:9"
             },
-            "scope": 435,
-            "src": "1545:31:2",
+            "scope": 1652,
+            "src": "1630:31:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 385,
+              "id": 1596,
               "nodeType": "StructuredDocumentation",
-              "src": "1582:79:2",
+              "src": "1667:79:9",
               "text": "Rejoin the set of collator candidates if previously had called `go_offline`"
             },
             "functionSelector": "d2f73ceb",
-            "id": 388,
+            "id": 1599,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "go_online",
-            "nameLocation": "1675:9:2",
+            "nameLocation": "1760:9:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 386,
+              "id": 1597,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1684:2:2"
+              "src": "1769:2:9"
             },
             "returnParameters": {
-              "id": 387,
+              "id": 1598,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1695:0:2"
+              "src": "1780:0:9"
             },
-            "scope": 435,
-            "src": "1666:30:2",
+            "scope": 1652,
+            "src": "1751:30:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 389,
+              "id": 1600,
               "nodeType": "StructuredDocumentation",
-              "src": "1702:37:2",
+              "src": "1787:37:9",
               "text": "Bond more for collator candidates"
             },
             "functionSelector": "c57bd3a8",
-            "id": 394,
+            "id": 1605,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "candidate_bond_more",
-            "nameLocation": "1753:19:2",
+            "nameLocation": "1838:19:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 392,
+              "id": 1603,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 391,
+                  "id": 1602,
                   "mutability": "mutable",
                   "name": "more",
-                  "nameLocation": "1781:4:2",
+                  "nameLocation": "1866:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 394,
-                  "src": "1773:12:2",
+                  "scope": 1605,
+                  "src": "1858:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -892,10 +1006,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 390,
+                    "id": 1601,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1773:7:2",
+                    "src": "1858:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -904,48 +1018,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1772:14:2"
+              "src": "1857:14:9"
             },
             "returnParameters": {
-              "id": 393,
+              "id": 1604,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1795:0:2"
+              "src": "1880:0:9"
             },
-            "scope": 435,
-            "src": "1744:52:2",
+            "scope": 1652,
+            "src": "1829:52:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 395,
+              "id": 1606,
               "nodeType": "StructuredDocumentation",
-              "src": "1802:37:2",
+              "src": "1887:37:9",
               "text": "Bond less for collator candidates"
             },
             "functionSelector": "289b6ba7",
-            "id": 400,
+            "id": 1611,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "candidate_bond_less",
-            "nameLocation": "1853:19:2",
+            "nameLocation": "1938:19:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 398,
+              "id": 1609,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 397,
+                  "id": 1608,
                   "mutability": "mutable",
                   "name": "less",
-                  "nameLocation": "1881:4:2",
+                  "nameLocation": "1966:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 400,
-                  "src": "1873:12:2",
+                  "scope": 1611,
+                  "src": "1958:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -953,10 +1067,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 396,
+                    "id": 1607,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1873:7:2",
+                    "src": "1958:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -965,48 +1079,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1872:14:2"
+              "src": "1957:14:9"
             },
             "returnParameters": {
-              "id": 399,
+              "id": 1610,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1895:0:2"
+              "src": "1980:0:9"
             },
-            "scope": 435,
-            "src": "1844:52:2",
+            "scope": 1652,
+            "src": "1929:52:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 401,
+              "id": 1612,
               "nodeType": "StructuredDocumentation",
-              "src": "1902:154:2",
+              "src": "1987:154:9",
               "text": "If caller is not a nominator, then join the set of nominators\n If caller is a nominator, then makes nomination to change their nomination state"
             },
-            "functionSelector": "82f2c8df",
-            "id": 408,
+            "functionSelector": "49df6eb3",
+            "id": 1623,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "nominate",
-            "nameLocation": "2070:8:2",
+            "nameLocation": "2155:8:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 406,
+              "id": 1621,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 403,
+                  "id": 1614,
                   "mutability": "mutable",
                   "name": "collator",
-                  "nameLocation": "2087:8:2",
+                  "nameLocation": "2181:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 408,
-                  "src": "2079:16:2",
+                  "scope": 1623,
+                  "src": "2173:16:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1014,10 +1128,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 402,
+                    "id": 1613,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2079:7:2",
+                    "src": "2173:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1028,13 +1142,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 405,
+                  "id": 1616,
                   "mutability": "mutable",
                   "name": "amount",
-                  "nameLocation": "2105:6:2",
+                  "nameLocation": "2207:6:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 408,
-                  "src": "2097:14:2",
+                  "scope": 1623,
+                  "src": "2199:14:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1042,10 +1156,64 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 404,
+                    "id": 1615,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2097:7:2",
+                    "src": "2199:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1618,
+                  "mutability": "mutable",
+                  "name": "collatorNominationCount",
+                  "nameLocation": "2231:23:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1623,
+                  "src": "2223:31:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1617,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2223:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1620,
+                  "mutability": "mutable",
+                  "name": "nominatorNominationCount",
+                  "nameLocation": "2272:24:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1623,
+                  "src": "2264:32:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1619,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2264:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1054,81 +1222,109 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2078:34:2"
+              "src": "2163:139:9"
             },
             "returnParameters": {
-              "id": 407,
+              "id": 1622,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2121:0:2"
+              "src": "2311:0:9"
             },
-            "scope": 435,
-            "src": "2061:61:2",
+            "scope": 1652,
+            "src": "2146:166:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 409,
+              "id": 1624,
               "nodeType": "StructuredDocumentation",
-              "src": "2128:83:2",
+              "src": "2318:83:9",
               "text": "Leave the set of nominators and, by implication, revoke all ongoing nominations"
             },
-            "functionSelector": "e8d68a37",
-            "id": 412,
+            "functionSelector": "b71d2153",
+            "id": 1629,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "leave_nominators",
-            "nameLocation": "2225:16:2",
+            "nameLocation": "2415:16:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 410,
+              "id": 1627,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2241:2:2"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1626,
+                  "mutability": "mutable",
+                  "name": "nominatorNominationCount",
+                  "nameLocation": "2440:24:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1629,
+                  "src": "2432:32:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1625,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2432:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2431:34:9"
             },
             "returnParameters": {
-              "id": 411,
+              "id": 1628,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2252:0:2"
+              "src": "2474:0:9"
             },
-            "scope": 435,
-            "src": "2216:37:2",
+            "scope": 1652,
+            "src": "2406:69:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 413,
+              "id": 1630,
               "nodeType": "StructuredDocumentation",
-              "src": "2259:33:2",
+              "src": "2481:33:9",
               "text": "Revoke an existing nomination"
             },
             "functionSelector": "4b65c34b",
-            "id": 418,
+            "id": 1635,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "revoke_nomination",
-            "nameLocation": "2306:17:2",
+            "nameLocation": "2528:17:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 416,
+              "id": 1633,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 415,
+                  "id": 1632,
                   "mutability": "mutable",
                   "name": "collator",
-                  "nameLocation": "2332:8:2",
+                  "nameLocation": "2554:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 418,
-                  "src": "2324:16:2",
+                  "scope": 1635,
+                  "src": "2546:16:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1136,10 +1332,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 414,
+                    "id": 1631,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2324:7:2",
+                    "src": "2546:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1149,48 +1345,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2323:18:2"
+              "src": "2545:18:9"
             },
             "returnParameters": {
-              "id": 417,
+              "id": 1634,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2350:0:2"
+              "src": "2572:0:9"
             },
-            "scope": 435,
-            "src": "2297:54:2",
+            "scope": 1652,
+            "src": "2519:54:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 419,
+              "id": 1636,
               "nodeType": "StructuredDocumentation",
-              "src": "2357:74:2",
+              "src": "2579:74:9",
               "text": "Bond more for nominators with respect to a specific collator candidate"
             },
             "functionSelector": "971d44c8",
-            "id": 426,
+            "id": 1643,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "nominator_bond_more",
-            "nameLocation": "2445:19:2",
+            "nameLocation": "2667:19:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 424,
+              "id": 1641,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 421,
+                  "id": 1638,
                   "mutability": "mutable",
                   "name": "candidate",
-                  "nameLocation": "2473:9:2",
+                  "nameLocation": "2695:9:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 426,
-                  "src": "2465:17:2",
+                  "scope": 1643,
+                  "src": "2687:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1198,10 +1394,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 420,
+                    "id": 1637,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2465:7:2",
+                    "src": "2687:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1212,13 +1408,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 423,
+                  "id": 1640,
                   "mutability": "mutable",
                   "name": "more",
-                  "nameLocation": "2492:4:2",
+                  "nameLocation": "2714:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 426,
-                  "src": "2484:12:2",
+                  "scope": 1643,
+                  "src": "2706:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1226,10 +1422,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 422,
+                    "id": 1639,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2484:7:2",
+                    "src": "2706:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1238,48 +1434,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2464:33:2"
+              "src": "2686:33:9"
             },
             "returnParameters": {
-              "id": 425,
+              "id": 1642,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2506:0:2"
+              "src": "2728:0:9"
             },
-            "scope": 435,
-            "src": "2436:71:2",
+            "scope": 1652,
+            "src": "2658:71:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 427,
+              "id": 1644,
               "nodeType": "StructuredDocumentation",
-              "src": "2513:75:2",
+              "src": "2735:75:9",
               "text": "Bond less for nominators with respect to a specific nominator candidate"
             },
             "functionSelector": "f6a52569",
-            "id": 434,
+            "id": 1651,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "nominator_bond_less",
-            "nameLocation": "2602:19:2",
+            "nameLocation": "2824:19:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 432,
+              "id": 1649,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 429,
+                  "id": 1646,
                   "mutability": "mutable",
                   "name": "candidate",
-                  "nameLocation": "2630:9:2",
+                  "nameLocation": "2852:9:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 434,
-                  "src": "2622:17:2",
+                  "scope": 1651,
+                  "src": "2844:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1287,10 +1483,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 428,
+                    "id": 1645,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2622:7:2",
+                    "src": "2844:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1301,13 +1497,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 431,
+                  "id": 1648,
                   "mutability": "mutable",
                   "name": "less",
-                  "nameLocation": "2649:4:2",
+                  "nameLocation": "2871:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 434,
-                  "src": "2641:12:2",
+                  "scope": 1651,
+                  "src": "2863:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1315,10 +1511,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 430,
+                    "id": 1647,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2641:7:2",
+                    "src": "2863:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1327,41 +1523,41 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2621:33:2"
+              "src": "2843:33:9"
             },
             "returnParameters": {
-              "id": 433,
+              "id": 1650,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2663:0:2"
+              "src": "2885:0:9"
             },
-            "scope": 435,
-            "src": "2593:71:2",
+            "scope": 1652,
+            "src": "2815:71:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 436,
-        "src": "273:2393:2",
+        "scope": 1653,
+        "src": "273:2615:9",
         "usedErrors": []
       }
     ],
-    "src": "41:3532:2"
+    "src": "41:3792:9"
   },
   "legacyAST": {
-    "absolutePath": "/home/purestake/data/ETHCC/ethcc-2021/contracts/StakingInterface.sol",
+    "absolutePath": "project:/contracts/StakingInterface.sol",
     "exportedSymbols": {
       "ParachainStaking": [
-        435
+        1652
       ]
     },
-    "id": 436,
+    "id": 1653,
     "license": "GPL-3.0-only",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 331,
+        "id": 1536,
         "literals": [
           "solidity",
           ">=",
@@ -1369,7 +1565,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "41:24:2"
+        "src": "41:24:9"
       },
       {
         "abstract": false,
@@ -1377,48 +1573,48 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 332,
+          "id": 1537,
           "nodeType": "StructuredDocumentation",
-          "src": "67:206:2",
+          "src": "67:206:9",
           "text": "The interface through which solidity contracts will interact with Parachain Staking\n We follow this same interface including four-byte function selectors, in the precompile that\n wraps the pallet"
         },
         "fullyImplemented": false,
-        "id": 435,
+        "id": 1652,
         "linearizedBaseContracts": [
-          435
+          1652
         ],
         "name": "ParachainStaking",
-        "nameLocation": "283:16:2",
+        "nameLocation": "283:16:9",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 333,
+              "id": 1538,
               "nodeType": "StructuredDocumentation",
-              "src": "342:72:2",
+              "src": "342:72:9",
               "text": "Check whether the specified address is currently a staking nominator"
             },
             "functionSelector": "8e5080e7",
-            "id": 340,
+            "id": 1545,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "is_nominator",
-            "nameLocation": "428:12:2",
+            "nameLocation": "428:12:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 336,
+              "id": 1541,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 335,
+                  "id": 1540,
                   "mutability": "mutable",
                   "name": "nominator",
-                  "nameLocation": "449:9:2",
+                  "nameLocation": "449:9:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 340,
-                  "src": "441:17:2",
+                  "scope": 1545,
+                  "src": "441:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1426,10 +1622,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 334,
+                    "id": 1539,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "441:7:2",
+                    "src": "441:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1439,21 +1635,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "440:19:2"
+              "src": "440:19:9"
             },
             "returnParameters": {
-              "id": 339,
+              "id": 1544,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 338,
+                  "id": 1543,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 340,
-                  "src": "483:4:2",
+                  "scope": 1545,
+                  "src": "483:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1461,10 +1657,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 337,
+                    "id": 1542,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "483:4:2",
+                    "src": "483:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1473,42 +1669,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "482:6:2"
+              "src": "482:6:9"
             },
-            "scope": 435,
-            "src": "419:70:2",
+            "scope": 1652,
+            "src": "419:70:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 341,
+              "id": 1546,
               "nodeType": "StructuredDocumentation",
-              "src": "495:72:2",
+              "src": "495:72:9",
               "text": "Check whether the specified addess is currently a collator candidate"
             },
             "functionSelector": "8545c833",
-            "id": 348,
+            "id": 1553,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "is_candidate",
-            "nameLocation": "581:12:2",
+            "nameLocation": "581:12:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 344,
+              "id": 1549,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 343,
+                  "id": 1548,
                   "mutability": "mutable",
                   "name": "collator",
-                  "nameLocation": "602:8:2",
+                  "nameLocation": "602:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 348,
-                  "src": "594:16:2",
+                  "scope": 1553,
+                  "src": "594:16:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1516,10 +1712,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 342,
+                    "id": 1547,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "594:7:2",
+                    "src": "594:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1529,21 +1725,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "593:18:2"
+              "src": "593:18:9"
             },
             "returnParameters": {
-              "id": 347,
+              "id": 1552,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 346,
+                  "id": 1551,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 348,
-                  "src": "635:4:2",
+                  "scope": 1553,
+                  "src": "635:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1551,10 +1747,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 345,
+                    "id": 1550,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "635:4:2",
+                    "src": "635:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1563,42 +1759,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "634:6:2"
+              "src": "634:6:9"
             },
-            "scope": 435,
-            "src": "572:69:2",
+            "scope": 1652,
+            "src": "572:69:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 349,
+              "id": 1554,
               "nodeType": "StructuredDocumentation",
-              "src": "647:77:2",
+              "src": "647:77:9",
               "text": "Check whether the specifies address is currently a part of the active set"
             },
             "functionSelector": "8f6d27c7",
-            "id": 356,
+            "id": 1561,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "is_selected_candidate",
-            "nameLocation": "738:21:2",
+            "nameLocation": "738:21:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 352,
+              "id": 1557,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 351,
+                  "id": 1556,
                   "mutability": "mutable",
                   "name": "collator",
-                  "nameLocation": "768:8:2",
+                  "nameLocation": "768:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 356,
-                  "src": "760:16:2",
+                  "scope": 1561,
+                  "src": "760:16:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1606,10 +1802,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 350,
+                    "id": 1555,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "760:7:2",
+                    "src": "760:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1619,21 +1815,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "759:18:2"
+              "src": "759:18:9"
             },
             "returnParameters": {
-              "id": 355,
+              "id": 1560,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 354,
+                  "id": 1559,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 356,
-                  "src": "801:4:2",
+                  "scope": 1561,
+                  "src": "825:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1641,10 +1837,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 353,
+                    "id": 1558,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "801:4:2",
+                    "src": "825:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1653,42 +1849,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "800:6:2"
+              "src": "824:6:9"
             },
-            "scope": 435,
-            "src": "729:78:2",
+            "scope": 1652,
+            "src": "729:102:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 357,
+              "id": 1562,
               "nodeType": "StructuredDocumentation",
-              "src": "813:64:2",
+              "src": "837:64:9",
               "text": "Total points awarded to all collators in a particular round."
             },
             "functionSelector": "9799b4e7",
-            "id": 364,
+            "id": 1569,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "points",
-            "nameLocation": "891:6:2",
+            "nameLocation": "915:6:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 360,
+              "id": 1565,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 359,
+                  "id": 1564,
                   "mutability": "mutable",
                   "name": "round",
-                  "nameLocation": "906:5:2",
+                  "nameLocation": "930:5:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 364,
-                  "src": "898:13:2",
+                  "scope": 1569,
+                  "src": "922:13:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1696,10 +1892,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 358,
+                    "id": 1563,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "898:7:2",
+                    "src": "922:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1708,21 +1904,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "897:15:2"
+              "src": "921:15:9"
             },
             "returnParameters": {
-              "id": 363,
+              "id": 1568,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 362,
+                  "id": 1567,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 364,
-                  "src": "936:7:2",
+                  "scope": 1569,
+                  "src": "960:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1730,10 +1926,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 361,
+                    "id": 1566,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "936:7:2",
+                    "src": "960:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1742,48 +1938,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "935:9:2"
+              "src": "959:9:9"
             },
-            "scope": 435,
-            "src": "882:63:2",
+            "scope": 1652,
+            "src": "906:63:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 365,
+              "id": 1570,
               "nodeType": "StructuredDocumentation",
-              "src": "952:37:2",
+              "src": "975:37:9",
               "text": "Get the minimum nomination amount"
             },
             "functionSelector": "c9f593b2",
-            "id": 370,
+            "id": 1575,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "min_nomination",
-            "nameLocation": "1003:14:2",
+            "nameLocation": "1026:14:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 366,
+              "id": 1571,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1017:2:2"
+              "src": "1040:2:9"
             },
             "returnParameters": {
-              "id": 369,
+              "id": 1574,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 368,
+                  "id": 1573,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 370,
-                  "src": "1043:7:2",
+                  "scope": 1575,
+                  "src": "1066:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1791,10 +1987,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 367,
+                    "id": 1572,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1043:7:2",
+                    "src": "1066:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1803,42 +1999,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1042:9:2"
+              "src": "1065:9:9"
             },
-            "scope": 435,
-            "src": "994:58:2",
+            "scope": 1652,
+            "src": "1017:58:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 371,
+              "id": 1576,
               "nodeType": "StructuredDocumentation",
-              "src": "1088:39:2",
+              "src": "1111:39:9",
               "text": "Join the set of collator candidates"
             },
-            "functionSelector": "ad76ed5a",
-            "id": 376,
+            "functionSelector": "0a1bff60",
+            "id": 1583,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "join_candidates",
-            "nameLocation": "1141:15:2",
+            "nameLocation": "1164:15:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 374,
+              "id": 1581,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 373,
+                  "id": 1578,
                   "mutability": "mutable",
                   "name": "amount",
-                  "nameLocation": "1165:6:2",
+                  "nameLocation": "1188:6:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 376,
-                  "src": "1157:14:2",
+                  "scope": 1583,
+                  "src": "1180:14:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1846,10 +2042,37 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 372,
+                    "id": 1577,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1157:7:2",
+                    "src": "1180:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1580,
+                  "mutability": "mutable",
+                  "name": "candidateCount",
+                  "nameLocation": "1204:14:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1583,
+                  "src": "1196:22:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1579,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1196:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1858,147 +2081,202 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1156:16:2"
+              "src": "1179:40:9"
             },
             "returnParameters": {
-              "id": 375,
+              "id": 1582,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1181:0:2"
+              "src": "1228:0:9"
             },
-            "scope": 435,
-            "src": "1132:50:2",
+            "scope": 1652,
+            "src": "1155:74:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 377,
+              "id": 1584,
               "nodeType": "StructuredDocumentation",
-              "src": "1188:234:2",
+              "src": "1235:234:9",
               "text": "Request to leave the set of candidates. If successful, the account is immediately\n removed from the candidate pool to prevent selection as a collator, but unbonding is\n executed with a delay of `BondDuration` rounds."
             },
-            "functionSelector": "b7694219",
-            "id": 380,
+            "functionSelector": "b7923c56",
+            "id": 1591,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "leave_candidates",
-            "nameLocation": "1436:16:2",
+            "nameLocation": "1483:16:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 378,
+              "id": 1589,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1452:2:2"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1586,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "1508:6:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1591,
+                  "src": "1500:14:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1585,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1500:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1588,
+                  "mutability": "mutable",
+                  "name": "candidateCount",
+                  "nameLocation": "1524:14:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1591,
+                  "src": "1516:22:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1587,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1516:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1499:40:9"
             },
             "returnParameters": {
-              "id": 379,
+              "id": 1590,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1463:0:2"
+              "src": "1548:0:9"
             },
-            "scope": 435,
-            "src": "1427:37:2",
+            "scope": 1652,
+            "src": "1474:75:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 381,
+              "id": 1592,
               "nodeType": "StructuredDocumentation",
-              "src": "1470:70:2",
+              "src": "1555:70:9",
               "text": "Temporarily leave the set of collator candidates without unbonding"
             },
             "functionSelector": "767e0450",
-            "id": 384,
+            "id": 1595,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "go_offline",
-            "nameLocation": "1554:10:2",
+            "nameLocation": "1639:10:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 382,
+              "id": 1593,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1564:2:2"
+              "src": "1649:2:9"
             },
             "returnParameters": {
-              "id": 383,
+              "id": 1594,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1575:0:2"
+              "src": "1660:0:9"
             },
-            "scope": 435,
-            "src": "1545:31:2",
+            "scope": 1652,
+            "src": "1630:31:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 385,
+              "id": 1596,
               "nodeType": "StructuredDocumentation",
-              "src": "1582:79:2",
+              "src": "1667:79:9",
               "text": "Rejoin the set of collator candidates if previously had called `go_offline`"
             },
             "functionSelector": "d2f73ceb",
-            "id": 388,
+            "id": 1599,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "go_online",
-            "nameLocation": "1675:9:2",
+            "nameLocation": "1760:9:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 386,
+              "id": 1597,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1684:2:2"
+              "src": "1769:2:9"
             },
             "returnParameters": {
-              "id": 387,
+              "id": 1598,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1695:0:2"
+              "src": "1780:0:9"
             },
-            "scope": 435,
-            "src": "1666:30:2",
+            "scope": 1652,
+            "src": "1751:30:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 389,
+              "id": 1600,
               "nodeType": "StructuredDocumentation",
-              "src": "1702:37:2",
+              "src": "1787:37:9",
               "text": "Bond more for collator candidates"
             },
             "functionSelector": "c57bd3a8",
-            "id": 394,
+            "id": 1605,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "candidate_bond_more",
-            "nameLocation": "1753:19:2",
+            "nameLocation": "1838:19:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 392,
+              "id": 1603,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 391,
+                  "id": 1602,
                   "mutability": "mutable",
                   "name": "more",
-                  "nameLocation": "1781:4:2",
+                  "nameLocation": "1866:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 394,
-                  "src": "1773:12:2",
+                  "scope": 1605,
+                  "src": "1858:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2006,10 +2284,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 390,
+                    "id": 1601,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1773:7:2",
+                    "src": "1858:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2018,48 +2296,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1772:14:2"
+              "src": "1857:14:9"
             },
             "returnParameters": {
-              "id": 393,
+              "id": 1604,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1795:0:2"
+              "src": "1880:0:9"
             },
-            "scope": 435,
-            "src": "1744:52:2",
+            "scope": 1652,
+            "src": "1829:52:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 395,
+              "id": 1606,
               "nodeType": "StructuredDocumentation",
-              "src": "1802:37:2",
+              "src": "1887:37:9",
               "text": "Bond less for collator candidates"
             },
             "functionSelector": "289b6ba7",
-            "id": 400,
+            "id": 1611,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "candidate_bond_less",
-            "nameLocation": "1853:19:2",
+            "nameLocation": "1938:19:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 398,
+              "id": 1609,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 397,
+                  "id": 1608,
                   "mutability": "mutable",
                   "name": "less",
-                  "nameLocation": "1881:4:2",
+                  "nameLocation": "1966:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 400,
-                  "src": "1873:12:2",
+                  "scope": 1611,
+                  "src": "1958:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2067,10 +2345,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 396,
+                    "id": 1607,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1873:7:2",
+                    "src": "1958:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2079,48 +2357,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1872:14:2"
+              "src": "1957:14:9"
             },
             "returnParameters": {
-              "id": 399,
+              "id": 1610,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1895:0:2"
+              "src": "1980:0:9"
             },
-            "scope": 435,
-            "src": "1844:52:2",
+            "scope": 1652,
+            "src": "1929:52:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 401,
+              "id": 1612,
               "nodeType": "StructuredDocumentation",
-              "src": "1902:154:2",
+              "src": "1987:154:9",
               "text": "If caller is not a nominator, then join the set of nominators\n If caller is a nominator, then makes nomination to change their nomination state"
             },
-            "functionSelector": "82f2c8df",
-            "id": 408,
+            "functionSelector": "49df6eb3",
+            "id": 1623,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "nominate",
-            "nameLocation": "2070:8:2",
+            "nameLocation": "2155:8:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 406,
+              "id": 1621,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 403,
+                  "id": 1614,
                   "mutability": "mutable",
                   "name": "collator",
-                  "nameLocation": "2087:8:2",
+                  "nameLocation": "2181:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 408,
-                  "src": "2079:16:2",
+                  "scope": 1623,
+                  "src": "2173:16:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2128,10 +2406,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 402,
+                    "id": 1613,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2079:7:2",
+                    "src": "2173:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2142,13 +2420,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 405,
+                  "id": 1616,
                   "mutability": "mutable",
                   "name": "amount",
-                  "nameLocation": "2105:6:2",
+                  "nameLocation": "2207:6:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 408,
-                  "src": "2097:14:2",
+                  "scope": 1623,
+                  "src": "2199:14:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2156,10 +2434,64 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 404,
+                    "id": 1615,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2097:7:2",
+                    "src": "2199:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1618,
+                  "mutability": "mutable",
+                  "name": "collatorNominationCount",
+                  "nameLocation": "2231:23:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1623,
+                  "src": "2223:31:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1617,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2223:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1620,
+                  "mutability": "mutable",
+                  "name": "nominatorNominationCount",
+                  "nameLocation": "2272:24:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1623,
+                  "src": "2264:32:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1619,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2264:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2168,81 +2500,109 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2078:34:2"
+              "src": "2163:139:9"
             },
             "returnParameters": {
-              "id": 407,
+              "id": 1622,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2121:0:2"
+              "src": "2311:0:9"
             },
-            "scope": 435,
-            "src": "2061:61:2",
+            "scope": 1652,
+            "src": "2146:166:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 409,
+              "id": 1624,
               "nodeType": "StructuredDocumentation",
-              "src": "2128:83:2",
+              "src": "2318:83:9",
               "text": "Leave the set of nominators and, by implication, revoke all ongoing nominations"
             },
-            "functionSelector": "e8d68a37",
-            "id": 412,
+            "functionSelector": "b71d2153",
+            "id": 1629,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "leave_nominators",
-            "nameLocation": "2225:16:2",
+            "nameLocation": "2415:16:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 410,
+              "id": 1627,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2241:2:2"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1626,
+                  "mutability": "mutable",
+                  "name": "nominatorNominationCount",
+                  "nameLocation": "2440:24:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1629,
+                  "src": "2432:32:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1625,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2432:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2431:34:9"
             },
             "returnParameters": {
-              "id": 411,
+              "id": 1628,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2252:0:2"
+              "src": "2474:0:9"
             },
-            "scope": 435,
-            "src": "2216:37:2",
+            "scope": 1652,
+            "src": "2406:69:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 413,
+              "id": 1630,
               "nodeType": "StructuredDocumentation",
-              "src": "2259:33:2",
+              "src": "2481:33:9",
               "text": "Revoke an existing nomination"
             },
             "functionSelector": "4b65c34b",
-            "id": 418,
+            "id": 1635,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "revoke_nomination",
-            "nameLocation": "2306:17:2",
+            "nameLocation": "2528:17:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 416,
+              "id": 1633,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 415,
+                  "id": 1632,
                   "mutability": "mutable",
                   "name": "collator",
-                  "nameLocation": "2332:8:2",
+                  "nameLocation": "2554:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 418,
-                  "src": "2324:16:2",
+                  "scope": 1635,
+                  "src": "2546:16:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2250,10 +2610,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 414,
+                    "id": 1631,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2324:7:2",
+                    "src": "2546:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2263,48 +2623,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2323:18:2"
+              "src": "2545:18:9"
             },
             "returnParameters": {
-              "id": 417,
+              "id": 1634,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2350:0:2"
+              "src": "2572:0:9"
             },
-            "scope": 435,
-            "src": "2297:54:2",
+            "scope": 1652,
+            "src": "2519:54:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 419,
+              "id": 1636,
               "nodeType": "StructuredDocumentation",
-              "src": "2357:74:2",
+              "src": "2579:74:9",
               "text": "Bond more for nominators with respect to a specific collator candidate"
             },
             "functionSelector": "971d44c8",
-            "id": 426,
+            "id": 1643,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "nominator_bond_more",
-            "nameLocation": "2445:19:2",
+            "nameLocation": "2667:19:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 424,
+              "id": 1641,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 421,
+                  "id": 1638,
                   "mutability": "mutable",
                   "name": "candidate",
-                  "nameLocation": "2473:9:2",
+                  "nameLocation": "2695:9:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 426,
-                  "src": "2465:17:2",
+                  "scope": 1643,
+                  "src": "2687:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2312,10 +2672,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 420,
+                    "id": 1637,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2465:7:2",
+                    "src": "2687:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2326,13 +2686,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 423,
+                  "id": 1640,
                   "mutability": "mutable",
                   "name": "more",
-                  "nameLocation": "2492:4:2",
+                  "nameLocation": "2714:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 426,
-                  "src": "2484:12:2",
+                  "scope": 1643,
+                  "src": "2706:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2340,10 +2700,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 422,
+                    "id": 1639,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2484:7:2",
+                    "src": "2706:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2352,48 +2712,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2464:33:2"
+              "src": "2686:33:9"
             },
             "returnParameters": {
-              "id": 425,
+              "id": 1642,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2506:0:2"
+              "src": "2728:0:9"
             },
-            "scope": 435,
-            "src": "2436:71:2",
+            "scope": 1652,
+            "src": "2658:71:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 427,
+              "id": 1644,
               "nodeType": "StructuredDocumentation",
-              "src": "2513:75:2",
+              "src": "2735:75:9",
               "text": "Bond less for nominators with respect to a specific nominator candidate"
             },
             "functionSelector": "f6a52569",
-            "id": 434,
+            "id": 1651,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "nominator_bond_less",
-            "nameLocation": "2602:19:2",
+            "nameLocation": "2824:19:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 432,
+              "id": 1649,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 429,
+                  "id": 1646,
                   "mutability": "mutable",
                   "name": "candidate",
-                  "nameLocation": "2630:9:2",
+                  "nameLocation": "2852:9:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 434,
-                  "src": "2622:17:2",
+                  "scope": 1651,
+                  "src": "2844:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2401,10 +2761,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 428,
+                    "id": 1645,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2622:7:2",
+                    "src": "2844:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2415,13 +2775,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 431,
+                  "id": 1648,
                   "mutability": "mutable",
                   "name": "less",
-                  "nameLocation": "2649:4:2",
+                  "nameLocation": "2871:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 434,
-                  "src": "2641:12:2",
+                  "scope": 1651,
+                  "src": "2863:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2429,10 +2789,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 430,
+                    "id": 1647,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2641:7:2",
+                    "src": "2863:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2441,27 +2801,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2621:33:2"
+              "src": "2843:33:9"
             },
             "returnParameters": {
-              "id": 433,
+              "id": 1650,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2663:0:2"
+              "src": "2885:0:9"
             },
-            "scope": 435,
-            "src": "2593:71:2",
+            "scope": 1652,
+            "src": "2815:71:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 436,
-        "src": "273:2393:2",
+        "scope": 1653,
+        "src": "273:2615:9",
         "usedErrors": []
       }
     ],
-    "src": "41:3532:2"
+    "src": "41:3792:9"
   },
   "compiler": {
     "name": "solc",
@@ -2469,7 +2829,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-07-20T10:46:11.610Z",
+  "updatedAt": "2021-07-20T21:42:31.165Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
@@ -2499,19 +2859,19 @@
       "is_selected_candidate(address)": {
         "notice": "Check whether the specifies address is currently a part of the active set"
       },
-      "join_candidates(uint256)": {
+      "join_candidates(uint256,uint256)": {
         "notice": "Join the set of collator candidates"
       },
-      "leave_candidates()": {
+      "leave_candidates(uint256,uint256)": {
         "notice": "Request to leave the set of candidates. If successful, the account is immediately removed from the candidate pool to prevent selection as a collator, but unbonding is executed with a delay of `BondDuration` rounds."
       },
-      "leave_nominators()": {
+      "leave_nominators(uint256)": {
         "notice": "Leave the set of nominators and, by implication, revoke all ongoing nominations"
       },
       "min_nomination()": {
         "notice": "Get the minimum nomination amount"
       },
-      "nominate(address,uint256)": {
+      "nominate(address,uint256,uint256,uint256)": {
         "notice": "If caller is not a nominator, then join the set of nominators If caller is a nominator, then makes nomination to change their nomination state"
       },
       "nominator_bond_less(address,uint256)": {
