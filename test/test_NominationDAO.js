@@ -77,15 +77,20 @@ contract("NominationDAO", (accounts) => {
     );
   });
 
+  // Add stake to the DAO ad nominate a COLLATOR
   it("should have succesfully nominated COLLATOR", async function () {
+
+    // Add stake for account 0 (MEMBER)
     await nominationDAO.add_stake({ from: accounts[0], value: 3 * MIN_NOMINATOR_STAKE });
 
+    // Check Stake
     const adminStake = await nominationDAO.memberStakes.call(accounts[0]);
     assert.equal(Number(adminStake), 3 * MIN_NOMINATOR_STAKE, "adminStake is wrong");
 
     // call update_nomination to nominate the current target
     await nominationDAO.update_nomination(COLLATOR, { from: accounts[0] });
 
+    // Check that the DAO is a nominator
     const nominators = (await api.query.parachainStaking.collatorState2(COLLATOR)).toHuman();
     expect(nominators.nominators.includes(nominationDAO.address)).to.equal(
       true,

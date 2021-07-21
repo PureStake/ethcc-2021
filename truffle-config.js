@@ -1,16 +1,11 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const Web3 = require("web3");
+
 // Moonbeam Development Node Private Key
 const privateKeyDev = "0b6e18cafb6ed99687ec547bd28139cafdd2bffe70e6b688025de6b445aa5c5b"; // Charleth
 // Moonbase Alpha Private Key --> Please change this to your own Private Key with funds
 // NOTE: Do not store your private key in plaintext files
 //       this is only for demostration purposes only
 const privateKeyMoonbase = "YOUR_PRIVATE_KEY_HERE_ONLY_FOR_DEMOSTRATION_PURPOSES";
-
-// const webSocketProvider = new Web3.providers.WebsocketProvider("ws://localhost:34102/");
-//  require("ts-node").register({
-//   files: true,
-// });
 
 module.exports = {
   networks: {
@@ -22,8 +17,7 @@ module.exports = {
         }
         return new HDWalletProvider(
           privateKeyDev,
-          //webSocketProvider
-          "http://localhost:9937/"
+          "http://localhost:9933/"
         );
       },
       network_id: 1281,
